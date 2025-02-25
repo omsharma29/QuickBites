@@ -1,5 +1,5 @@
 {
-  "name": "Quickbites",
+  "name": "quickbites",
   "private": true,
   "scripts": {
     "build": "turbo build",
