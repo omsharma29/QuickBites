@@ -1,13 +1,13 @@
-import Express from "express";
+import express, {Express} from "express";
 require("dotenv").config();
 import cookieParser from 'cookie-parser';
 import router from "./routes/PizzasRoute";
 import cors from "cors";
 const PORT = process.env.PORT || 8500;
 
-const app = Express();
+export const app: Express = express();
 
-app.use(Express.json());
+app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors())
@@ -22,3 +22,4 @@ app.get('/', (req,res) => {
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`); // Added missing colon
 });
+
