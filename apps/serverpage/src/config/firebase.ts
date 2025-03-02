@@ -1,7 +1,14 @@
 require("dotenv").config();
 
-import { getApps, initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
+import { initializeApp, getApps } from "firebase/app";
+import { 
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendEmailVerification,
+  sendPasswordResetEmail
+} from "firebase/auth";
 import admin, { ServiceAccount } from "firebase-admin";
 
 // Your Firebase configuration object
