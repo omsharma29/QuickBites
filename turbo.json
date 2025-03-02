@@ -22,10 +22,19 @@
     },
     "db:migrate": {
       "cache": false,
-      "persistent": true 
+      "persistent": true
     },
     "db:deploy": {
       "cache": false
+    }
+  },
+  "pipeline": {
+    "build": {
+      "env": [
+        "FIREBASE_API_KEY",
+        "FIREBASE_AUTH_DOMAIN",
+        "FIREBASE_PROJECT_ID"
+      ]
     }
   }
 }
