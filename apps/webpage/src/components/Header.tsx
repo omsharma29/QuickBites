@@ -3,7 +3,7 @@ import {MapPin, Search, Truck} from "lucide-react"
 import HeaderImg from "../assets/HeaderImg.svg"
 import { Input } from "@repo/ui/input"
 import { Button as FindAddress } from "@repo/ui/button"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { AuthModal } from "./AuthModal"  // Changed this import
 
 

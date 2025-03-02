@@ -10,11 +10,11 @@ interface LoginProps {
 export function LogIn({ isOpen, onClose, onSwitchToSignup }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [loading] = useState(false);
+  const [error] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-   
+   e.preventDefault()
   };
 
   return (

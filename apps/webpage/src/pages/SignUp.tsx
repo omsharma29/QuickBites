@@ -1,7 +1,4 @@
-import { Button } from '@repo/ui/button';
-import { X } from 'lucide-react';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 
 import {
   Dialog,
@@ -13,7 +10,6 @@ import {
 } from "@repo/ui/dialoge"
 
 export default function SignUp() {
-  const navigate = useNavigate();
 
   return (
     <Dialog>

@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import cartReducer from "../SliceFeature/cartSlice";
 
 export const store = configureStore({

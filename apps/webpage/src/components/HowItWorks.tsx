@@ -1,4 +1,3 @@
-import React from 'react'
 import MapMaker from "../assets/MapMarker.svg"
 import Donut from "../assets/Donut.svg"
 import Invoice from "../assets/Invoice.svg"
