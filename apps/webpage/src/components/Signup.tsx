@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, X } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@repo/ui/dialoge"
-import axios from "axios"
+import { Mail, Lock, ArrowRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@repo/ui/dialoge";
+
 interface SignupProps {
   isOpen: boolean;
   onClose: () => void;
@@ -10,7 +9,7 @@ interface SignupProps {
 }
 
 export function Signup({ isOpen, onClose, onSwitchToLogin }: SignupProps) {
-  const navigate = useNavigate();
+ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,29 +19,8 @@ export function Signup({ isOpen, onClose, onSwitchToLogin }: SignupProps) {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_URL}/api/v1/signup`, {
-        email,
-        password
-      });
-      
-      if (response.data) {
-        localStorage.setItem('userEmail', email); // Store email instead of token
-        onClose();
-        window.location.reload(); // Refresh to update UI
-      }
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to sign up');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSwitchToLogin = () => {
-    onClose();
-    onSwitchToLogin();
-  };
+    // Add your signup logic here
+  }; // Added missing closing bracket
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -102,11 +80,14 @@ export function Signup({ isOpen, onClose, onSwitchToLogin }: SignupProps) {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <button onClick={handleSwitchToLogin} className="text-[#FFB20E] hover:underline font-medium">
-            Sign in
+          <button 
+            onClick={onSwitchToLogin} 
+            className="text-[#FFB20E] hover:underline font-medium"
+          >
+            Log In
           </button>
         </p>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

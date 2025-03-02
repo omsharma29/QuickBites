@@ -9,7 +9,7 @@ import {
     auth
 } from '../config/firebase';
 import { Request, Response } from 'express';
-import prisma from '@repo/db/client'; // Ensure this path is correct
+import  prisma  from '@repo/db/client'; // Ensure this path is correct
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 import { UserSchema } from "@repo/zod/schema";
 
@@ -25,7 +25,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     }
 
     const { email, password } = validation.data;
-    let user: any;
+    let userCredential;
     
     try {
         // Test database connection first
@@ -40,9 +40,6 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
         // Check if email already exists in the database
         const existingUser = await prisma.user.findUnique({
             where: { email }
-        }).catch(err => {
-            console.error('Database query error:', err);
-            return null;
         });
 
         if (existingUser) {
@@ -50,8 +47,9 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
             return;
         }
 
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        user = userCredential.user;
+        // Create the Firebase user
+        userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
         // Hash the password before saving to the database
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -64,12 +62,31 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
             }
         });
 
-        res.json({ message: "User Created Successfully", id: database.id, email: database.email });
+        // Get ID token from the newly created user credential
+        const token = await userCredential.user.getIdToken();
+
+        // Set the token as an HTTP-only cookie
+        res.cookie('access_token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 3600000 // 1 hour
+        });
+
+        res.json({ 
+            message: "User Created Successfully", 
+            id: database.id, 
+            email: database.email,
+            user: {
+                uid: user.uid,
+                email: user.email
+            }
+        });
 
     } catch (error: any) {
         console.error('Registration error:', error);
-        if (user) {
-            await user.delete();
+        if (userCredential?.user) {
+            await userCredential.user.delete();
         }
         if (error.code === 'auth/email-already-in-use') {
             res.status(400).json({ message: "Email is already registered. Try logging in." });

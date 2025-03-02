@@ -1,13 +1,18 @@
 import { Button as ShadButton} from "@repo/ui/button"
-import {User} from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { User } from "lucide-react"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@repo/Store"
+import { logoutUser } from "@repo/store"
 
 export default function Button() {
-  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleLogout = () => {
-    localStorage.removeItem('userEmail'); // Remove email from localStorage
-    window.location.reload(); // Refresh the page to update UI
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser());
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   return (

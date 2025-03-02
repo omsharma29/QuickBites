@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight, X } from 'lucide-react';
+import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@repo/ui/dialoge"
-import axios from "axios"
 interface LoginProps {
   isOpen: boolean;
   onClose: () => void;
   onSwitchToSignup: () => void;
 }
 
-export function Login({ isOpen, onClose, onSwitchToSignup }: LoginProps) {
-  const navigate = useNavigate();
+export function LogIn({ isOpen, onClose, onSwitchToSignup }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -78,7 +75,10 @@ export function Login({ isOpen, onClose, onSwitchToSignup }: LoginProps) {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account?{' '}
-          <button onClick={onSwitchToSignup} className="text-[#FFB20E] hover:underline font-medium">
+          <button 
+            onClick={onSwitchToSignup}
+            className="text-[#FFB20E] hover:underline font-medium"
+          >
             Sign up
           </button>
         </p>

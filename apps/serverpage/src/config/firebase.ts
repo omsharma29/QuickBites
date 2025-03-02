@@ -17,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Add this line to debug
-console.log('Firebase Config:', firebaseConfig);
+// console.log('Firebase Config:', firebaseConfig);
 
 // Initialize Firebase app
 const firebaseApp = getApps().length ? getApps()[0] : initializeApp(firebaseConfig); 

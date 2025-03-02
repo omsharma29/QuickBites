@@ -14,10 +14,11 @@ datasource db {
 }
 
 model User {
-  id        Int   @id @default(autoincrement())
-  email     String   @unique
-  password  String
-  firbaseUid String @unique
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  password    String
+  firbaseUid  String  @unique
+  orders      Order[]
 }
 
 model Order {
@@ -34,12 +35,12 @@ model OrderDetail {
   orderId     Int
   pizzaName   String 
   pizzaTag    String
-  quantity    Number
-  pricePerUnit Number
+  quantity    Int
+  pricePerUnit Int
   itemTotal    Float
   order Order @relation(fields: [orderId], references: [id])
 //useraddress is not given yet to give 
 
 }
 
-//useraddress is not given yet to give 
+//useraddress is not given yet to give

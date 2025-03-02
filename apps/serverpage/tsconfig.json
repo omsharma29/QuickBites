@@ -2,14 +2,17 @@
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "lib": ["ES2020"],
-    "module": "NodeNext",           // Use ES modules
-    "target": "ES2020",           // Adjust this based on your Node.js version
+    "module": "NodeNext",
+    "target": "ES2018",
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "strict": true,
-    "outDir": "./dist",           // Output directory for compiled code
-    "rootDir": "./"                // Root directory for your source files
+    "outDir": "./dist",
+    "rootDir": "./",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*.ts", "api/*.ts"]
+  "include": ["src/**/*"]
 }
