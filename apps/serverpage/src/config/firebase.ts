@@ -1,10 +1,8 @@
 require("dotenv").config();
 
-// Import the necessary functions from Firebase SDK
-import { getApps, initializeApp } from "firebase/app"; // Modular import
+import { getApps, initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import admin, { ServiceAccount } from "firebase-admin";
-import serviceAccount from "../config/firebaseService.json";
 
 // Your Firebase configuration object
 const firebaseConfig = {
@@ -16,18 +14,20 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID
 };
 
-// Add this line to debug
-// console.log('Firebase Config:', firebaseConfig);
+// Service Account configuration
+const serviceAccount: ServiceAccount = {
+  projectId: process.env.FIREBASE_PROJECT_ID!,
+  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')!,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
+};
 
 // Initialize Firebase app
 const firebaseApp = getApps().length ? getApps()[0] : initializeApp(firebaseConfig); 
 const auth = getAuth(firebaseApp);
-// Initialize app in Firebase v9+
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as ServiceAccount),
+  credential: admin.credential.cert(serviceAccount),
 });
 
-// Export necessary Firebase and Firebase Admin methods
 export { auth, signInWithEmailAndPassword, sendPasswordResetEmail, getAuth, createUserWithEmailAndPassword, signOut, sendEmailVerification, admin };
