@@ -1,7 +1,9 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "lib": ["ES2020"],
+    "lib": [
+      "ES2020"
+    ],
     "module": "NodeNext",
     "target": "ES2018",
     "esModuleInterop": true,
@@ -13,6 +15,11 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./api/*.ts",
+    "src/**/*"
+  ]
 }

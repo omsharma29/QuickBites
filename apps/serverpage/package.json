@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -b",
     "dev": "tsc -b && node dist/src/app.js",
-    "start": "nodemon --exec ts-node src/app.ts"
+    "start": "nodemon --exec ts-node src/app.ts",
+    "vercel-build" : "echo hello"
   },
   "keywords": [],
   "author": "",
