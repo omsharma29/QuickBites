@@ -5,7 +5,12 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "FIREBASE_API_KEY",
+        "FIREBASE_AUTH_DOMAIN",
+        "FIREBASE_PROJECT_ID"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -22,19 +27,10 @@
     },
     "db:migrate": {
       "cache": false,
-      "persistent": true
+      "persistent": true 
     },
     "db:deploy": {
       "cache": false
-    }
-  },
-  "pipeline": {
-    "build": {
-      "env": [
-        "FIREBASE_API_KEY",
-        "FIREBASE_AUTH_DOMAIN",
-        "FIREBASE_PROJECT_ID"
-      ]
     }
   }
 }
