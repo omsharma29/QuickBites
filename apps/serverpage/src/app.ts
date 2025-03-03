@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import router from "./routes/PizzasRoute";
-require("dotenv").config();
+import router from "./routes/PizzasRoute.js";
+import 'dotenv/config';
 
 const PORT = process.env.PORT || 8500;
 

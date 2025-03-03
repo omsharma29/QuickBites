@@ -2,12 +2,14 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["ES2020"],
-    "module": "NodeNext",           // Use ES modules
-    "target": "ES2020",           // Adjust this based on your Node.js version
+    "module": "NodeNext",        // Changed from ESNext to NodeNext
+    "target": "ESNext",           // Adjust this based on your Node.js version
     "esModuleInterop": true,
-    "moduleResolution": "nodenext",
+    "moduleResolution": "NodeNext",
     "declaration": true,
-    "strict": true
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "include": ["src", "index.ts"],
   "exclude": ["node_modules", "dist"]

@@ -1,1 +1,1 @@
-export * from "./src/zod"
+export * from "./src/schema.ts";

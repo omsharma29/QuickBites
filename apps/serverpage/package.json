@@ -1,14 +1,15 @@
 {
   "name": "serverpage",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -b",
-    "dev": "tsc -b && node dist/src/app.js",
-    "start": "nodemon --exec ts-node src/app.ts",
-    "vercel-build" : "echo hello"
+    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm src/app.ts",
+    "start": "nodemon --experimental-specifier-resolution=node --exec 'node --loader ts-node/esm' src/app.ts",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "",
